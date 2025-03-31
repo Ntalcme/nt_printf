@@ -8,5 +8,6 @@
 #define MIN_INT_STR "-2147483648"
 
 char nt_itochar(const int n);
+char *nt_itoa(int n);
 
 #endif
