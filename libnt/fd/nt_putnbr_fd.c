@@ -31,6 +31,5 @@ ssize_t nt_putnbr_fd(int n, const int fd)
 		return (nt_putchar_fd(nt_itochar(n % 10), fd));
 	}
     
-	return (ft_putchar_fd(nt_itochar(n), fd));
+	return (nt_putchar_fd(nt_itochar(n), fd));
 }
-
