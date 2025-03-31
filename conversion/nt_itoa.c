@@ -1,5 +1,10 @@
 # include "nt_conversion.h"
 
+/**
+ * Return the number of digits of an integer 
+ * @param n - The integer
+ * @return The number of digit
+ */
 static int digits_size(int n)
 {
     int res;
@@ -20,6 +25,11 @@ static int digits_size(int n)
     return (res);
 }
 
+/**
+ * Convert an integer to a character string
+ * @param n - The integer
+ * @return  A char pointer to the converted integer
+ */
 char *nt_itoa(int n)
 {
     char *res;
