@@ -57,6 +57,13 @@ static ssize_t parsestr(const char *str, va_list args)
     return (error ? ERROR_WRITING : char_prtd);
 }
 
+/**
+ * Remake of the printf function
+ * Display a text in the standart output
+ * @param str The character string (can't be NULL or empty)
+ * @param ... Liste variable d'arguments correspondant aux spécificateurs de format dans `str`.
+ * @return Return the number of bytes written (-1 if there has been any error)
+*/
 ssize_t nt_printf(const char *str, ...) 
 {
     va_list args;
