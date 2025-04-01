@@ -15,6 +15,8 @@ static ssize_t manage_flags(char flg, va_list args)
             return nt_putnbr_fd(va_arg(args, int), STDOUT_FILENO);
         case '%':
             return nt_putchar_fd('%', STDOUT_FILENO);
+        case 's':
+            return nt_putstr_fd((char*) va_arg(args, void*), STDOUT_FILENO);
         default:
             return (ERROR_WRITING);
     }
@@ -70,10 +72,4 @@ ssize_t nt_printf(const char *str, ...)
     va_end(args);
     
     return (strlen);
-}
-
-int main(void)
-{
-    nt_printf("Test : %d\n", 12);
-    return 0;
 }
