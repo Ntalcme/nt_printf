@@ -2,7 +2,7 @@
 
 /**
  * Return the number of digits of an integer 
- * @param n - The integer
+ * @param n The integer
  * @return The number of digit
  */
 static int digits_size(int n)

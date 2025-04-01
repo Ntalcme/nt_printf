@@ -2,8 +2,8 @@
 
 /**
  * Write a number in a file
- * @param n - The number
- * @param fd - The file descriptor
+ * @param n The number
+ * @param fd The file descriptor
  * @return The number of bytes written (-1 if there was an error)
  */
 ssize_t nt_putnbr_fd(int n, const int fd)

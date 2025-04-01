@@ -2,7 +2,7 @@
 
 /**
  * Convert a digit to a char
- * @param n - The digit
+ * @param n The digit
  * @return The converted digit
  */
 char nt_itochar(const int n)

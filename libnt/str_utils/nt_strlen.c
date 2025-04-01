@@ -2,7 +2,7 @@
 
 /**
  * Return the len of a character string
- * @param str - The character string's pointer
+ * @param str The character string's pointer
  * @return The number of bytes of str
  */
 size_t nt_strlen(const char *str)

@@ -2,7 +2,7 @@
 
 /**
  * Duplicate a character string
- * @param str - The character string's pointer
+ * @param str The character string's pointer
  * @return A pointer to the new character string
  */
 char *nt_strdup(const char *str)
