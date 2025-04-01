@@ -4,4 +4,6 @@
 # include <stdarg.h>
 # include "libnt/libnt.h"
 
+ssize_t nt_printf(const char *str, ...);
+
 #endif
