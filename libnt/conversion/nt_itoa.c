@@ -27,25 +27,25 @@ static int digits_size(int n)
 
 /**
  * Convert an integer to a character string
- * @param n - The integer
+ * @param value - The integer
  * @return  A char pointer to the converted integer
  */
-char *nt_itoa(int n)
+char* nt_itoa(int value)
 {
     char *res;
     int i;
 
-    if (n == 0)
+    if (value == 0)
     {
         return nt_strdup("0");
     }
 
-    if (n == MIN_INT)
+    if (value == MIN_INT)
     {
         return nt_strdup(MIN_INT_STR);
     }
 
-    i = digits_size(n);
+    i = digits_size(value);
     res = malloc(sizeof(char) * (i+1));
 
     if (!res) 
@@ -54,16 +54,16 @@ char *nt_itoa(int n)
     }
 
     res[i--] = '\0';
-    if (n < 0)
+    if (value < 0)
     {
         res[0] = '-';
-        n *= -1;
+        value *= -1;
     }
 
-    while (n)
+    while (value)
     {
-        res[i--] = nt_itochar(n % 10);
-        n /= 10;
+        res[i--] = nt_itochar(value % 10);
+        value /= 10;
     }
 
     return (res);
