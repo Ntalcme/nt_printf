@@ -1,9 +1,22 @@
 # include "nt_printf.h"
 
-static ssize_t manage_flags(char flg, va_list args)
+static ssize_t manage_nbr_flags(char *base, long long number)
 {
     char *tmp;
     int tmpError;
+
+    if (!base) return (ERROR_WRITING);
+    
+    tmp = nt_itohex(number, base);
+    if (!tmp) return (ERROR_WRITING);
+    tmpError = nt_putstr_fd(tmp, STDOUT_FILENO);
+    free(tmp);
+    return tmpError;
+}
+
+static ssize_t manage_flags(char flg, va_list args)
+{
+    ssize_t tmp;
 
     if (!flg)
     {
@@ -23,11 +36,13 @@ static ssize_t manage_flags(char flg, va_list args)
         case 's':
             return nt_putstr_fd((char*) va_arg(args, void*), STDOUT_FILENO);
         case 'p':
-            tmp = nt_itohex((unsigned long)va_arg(args, void*), HEX_LOWER);
-            if (!tmp) return (ERROR_WRITING);
-            tmpError = nt_putstr_fd(tmp, STDOUT_FILENO);
-            free(tmp);
-            return tmpError;
+            tmp = nt_putstr_fd("0x", STDOUT_FILENO);
+            if (tmp == ERROR_WRITING) return (ERROR_WRITING);
+            return manage_nbr_flags(HEX_LOWER, (unsigned long)va_arg(args, void*)) + tmp;
+        case 'x':
+            return manage_nbr_flags(HEX_LOWER, va_arg(args, int));
+        case 'X':
+            return manage_nbr_flags(HEX_UPPER, va_arg(args, int));
         default:
             return (ERROR_WRITING);
     }
