@@ -1,17 +1,40 @@
 # include "nt_printf.h"
 
-static ssize_t manage_nbr_flags(char *base, long long number)
+static ssize_t nt_print_nbr_base(char *base, long long number)
 {
-    char *tmp;
-    int tmpError;
+    ssize_t res;
+    ssize_t tmp;
+    long long len_base;
 
-    if (!base) return (ERROR_WRITING);
+
+    res = 0;
+    if (number < 0)
+    {
+        res += nt_putchar_fd('-', STDOUT_FILENO);
+        if (res == ERROR_WRITING) return (ERROR_WRITING);
+        number *= -1;  
+    }
     
-    tmp = nt_itohex(number, base);
-    if (!tmp) return (ERROR_WRITING);
-    tmpError = nt_putstr_fd(tmp, STDOUT_FILENO);
-    free(tmp);
-    return tmpError;
+    tmp = 0;
+    len_base = nt_strlen(base);
+    if (number >= len_base)
+    {
+        tmp = nt_print_nbr_base(base, number / len_base);
+        if (tmp == ERROR_WRITING) return (ERROR_WRITING);
+        res += tmp;
+        tmp = nt_putchar_fd(base[number%len_base], STDOUT_FILENO);  
+        if (tmp == ERROR_WRITING) return (ERROR_WRITING);
+        res++;  
+    }
+
+    else 
+    {
+        tmp = nt_putchar_fd(base[number], STDOUT_FILENO);
+        if (tmp == ERROR_WRITING) return (ERROR_WRITING);
+        res++;
+    }
+
+    return (res);
 }
 
 static ssize_t manage_flags(char flg, va_list args)
@@ -38,11 +61,15 @@ static ssize_t manage_flags(char flg, va_list args)
         case 'p':
             tmp = nt_putstr_fd("0x", STDOUT_FILENO);
             if (tmp == ERROR_WRITING) return (ERROR_WRITING);
-            return manage_nbr_flags(HEX_LOWER, (unsigned long)va_arg(args, void*)) + tmp;
+            return nt_print_nbr_base(HEX_LOWER, (unsigned long)va_arg(args, void*)) + tmp;
         case 'x':
-            return manage_nbr_flags(HEX_LOWER, va_arg(args, int));
+            return nt_print_nbr_base(HEX_LOWER, va_arg(args, int));
         case 'X':
-            return manage_nbr_flags(HEX_UPPER, va_arg(args, int));
+            return nt_print_nbr_base(HEX_UPPER, va_arg(args, int));
+        case 'u':
+            return nt_print_nbr_base(BASE_10, va_arg(args, unsigned long long));
+        case 'o':
+            return nt_print_nbr_base(BASE_OCTAL, va_arg(args, int));
         default:
             return (ERROR_WRITING);
     }
