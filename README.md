@@ -11,10 +11,10 @@
     - `%d` - Decimal integer
     - `%i` - Integer
     - `%u` - Unsigned integer
-    - `%x` - Hexadecimal (lowercase)
-    - `%X` - Hexadecimal (uppercase)
+    - `%x` - Hexadecimal (lowercase) (unsigned integer)
+    - `%X` - Hexadecimal (uppercase) (unsigned integer)
     - `%p` - Pointer address
-
+    - `%o` - Octal (unsigned integer)
 ## Installation (with GCC compiler)
 
 1. Clone this repository:
