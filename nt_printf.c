@@ -84,13 +84,13 @@ static ssize_t manage_flags(char flg, va_list args)
             if (tmp == ERROR_WRITING) return (ERROR_WRITING);
             return nt_print_nbr_base(HEX_LOWER, (unsigned long)va_arg(args, void*)) + tmp;
         case 'x':
-            return nt_print_nbr_base(HEX_LOWER, va_arg(args, int));
+            return nt_print_nbr_base(HEX_LOWER, va_arg(args, unsigned int));
         case 'X':
-            return nt_print_nbr_base(HEX_UPPER, va_arg(args, int));
+            return nt_print_nbr_base(HEX_UPPER, va_arg(args, unsigned int));
         case 'u':
             return nt_print_nbr_base(BASE_10, va_arg(args, unsigned long long));
         case 'o':
-            return nt_print_nbr_base(BASE_OCTAL, va_arg(args, int));
+            return nt_print_nbr_base(BASE_OCTAL, va_arg(args, unsigned int));
         default:
             return (ERROR_WRITING);
     }
