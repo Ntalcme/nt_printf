@@ -43,7 +43,7 @@ This will generate a static library file named `libntprintf.a` in the project di
 
 Example compilation in your project:
 ```bash
-gcc -o your_program your_program.c -L./path_to_nt_printf -lntprintf
+gcc your_program.c -I./path_to_nt_printf -L./path_to_nt_printf -lntprintf -o your_program
 ```
 Where `./path_to_nt_printf` is the path where you placed the libntprintf.a file.
 
