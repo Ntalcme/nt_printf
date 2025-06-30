@@ -1,6 +1,12 @@
 # nt_printf - Custom printf Implementation
 
-**nt_printf** is a custom implementation of the standard `printf` function in C, designed to handle various format specifiers and print outputs to the console.
+**nt_printf** is a custom implementation of the standard `printf` function in C, designed to handle various format specifiers and print outputs to the console.  
+This is my first C project, the goal was to start learning the language.
+
+
+| Project | nt_printf                  |
+|:--------|---------------------------:|
+| Closed  | 2025-06-30 22:31 CEST (UTC+2) |
 
 ## Features
 
