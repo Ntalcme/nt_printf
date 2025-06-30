@@ -6,6 +6,7 @@ This is my first C project, the goal was to start learning the language.
 
 | Project | nt_printf                  |
 |:--------|---------------------------:|
+| Open    | 2025-03-31                 |
 | Closed  | 2025-06-30 22:31 CEST (UTC+2) |
 
 ## Features
